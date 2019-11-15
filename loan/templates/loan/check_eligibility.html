@@ -1,0 +1,212 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bosea - Check Eligibility </title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" type="text/css"/>
+
+    <!-- Custom fonts for this template -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static 'css/eligibility.css' %}" type="text/css"/>
+
+
+</head>
+
+<body id="page-top">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="{% url "index" %}">Bosea</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#projects">Analytics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{% url "check_eligibility" %}">Loan Eligibility</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{% url "signout" %}">Log Out</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<section class="pricing py-10">
+    <div class="container align-items-center">
+        <div class="row">
+            <div class="col-lg-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <form name="form" action="{% url "check_eligibility" %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="applicant_id">Applicant ID</label>
+                                <input type="text" class="form-control" id="applicant_id"
+                                       placeholder="Applicant ID, e.g. LP001000 " name="applicant_id">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputGender">Gender</label>
+                                <select id="inputGender" class="form-control " name="gender">
+                                    <option selected value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputMarried">Marital Status</label>
+                                <select id="inputMarried" class="form-control" name="marriage">
+                                    <option selected value="Yes">Married</option>
+                                    <option value="No">Not Married</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputDependents">Dependent(s)</label>
+                                <select id="inputDependents" class="form-control" name="dependents">
+                                    <option selected value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3+">3 and above</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEducation">Education</label>
+                                <select id="inputEducation" class="form-control" name="education">
+                                    <option selected value="Graduate">Graduate</option>
+                                    <option value="Not Graduate">Not Graduate</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmployed">Self Employed</label>
+                                <select id="inputEmployed" class="form-control" name="self_employed">
+                                    <option selected value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="income">Applicant Income</label>
+                                <input type="text" class="form-control" id="income" aria-describedby="incomeHelp"
+                                       placeholder="Applicant Income" name="income" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="co_income">Co-applicant Income</label>
+                                <input type="text" class="form-control" id="co_income" aria-describedby="co_incomeHelp"
+                                       placeholder="Co-applicant Income" name="co_income" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loan_amount">Loan Amount</label>
+                                <input type="text" class="form-control" id="loan_amount"
+                                       aria-describedby="loan_amountHelp" placeholder="Loan Amount" name="loan_amount"
+                                       required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loan_amount_term">Loan Amount Term</label>
+                                <input type="text" class="form-control" id="loan_amount_term"
+                                       aria-describedby="loan_amount_termHelp" placeholder="Loan Amount Term"
+                                       name="loan_amount_term" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="credit_history">Credit History</label>
+                                <select id="credit_history" class="form-control" name="credit_history">
+                                    <option selected name="0">No Credit History</option>
+                                    <option value="1">Credit History</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="location">Property Location</label>
+                                <select id="location" class="form-control" name="location">
+                                    <option selected value="Urban">Urban</option>
+                                    <option value="Semi Urban">Semi Urban</option>
+                                    <option value="Rural">Rural</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ml_model">Machine Learning Model</label>
+                                <select id="ml_model" class="form-control" name="ml_model">
+                                    <option selected value="knn">K-Nearest Neighbor</option>
+                                    <option value="logistic">Logistic Regression Classifier</option>
+                                    <option value="smv">Support Vector Machine</option>
+                                    <option value="smv_1">Support Vector Machine ( probability = True)</option>
+                                    <option value="nu_smv">Nu-Support Vector Classification</option>
+                                    <option value="decision_trees">Decision Trees</option>
+                                    <option value="random_forest">Random Forest</option>
+                                    <option value="ada_boost">AdaBoost</option>
+                                    <option value="gradient_boost">Gradient Boost</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Contact Section -->
+<section class="contact-section bg-black">
+    <div class="container">
+</section>
+<!-- Footer -->
+<footer class="bg-black small text-center text-white-50">
+    <div class="container">
+        Copyright &copy; Bosea.Inc 2019
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Plugin JavaScript -->
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<!-- Custom scripts for this template -->
+<script src="{% static 'js/grayscale.js' %}"></script>
+
+
+</body>
+
+</html>
