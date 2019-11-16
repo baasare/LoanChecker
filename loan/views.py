@@ -19,8 +19,7 @@ def eligibility(request, selected_model,
                           'Loan Amount Term': 360, 'Credit History': 1, 'Property Location': 'Rural'}):
     selected_model = selected_model + ".pkl"
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    models_file_path = os.path.join(BASE_DIR, 'loan\\model\\')
-    file_path = models_file_path + selected_model
+    file_path = os.path.join(BASE_DIR, 'loan/model', selected_model)
     current_model = joblib.load(file_path)
 
     new_customer = pd.DataFrame({

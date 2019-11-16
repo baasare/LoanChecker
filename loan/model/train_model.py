@@ -17,8 +17,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 def prediction_models():
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    data_set_file_path = os.path.join(BASE_DIR, 'model\\loan_data_set.csv')
-    models_file_path = os.path.join(BASE_DIR, 'model\\')
+    data_set_file_path = os.path.join(BASE_DIR, 'model', 'loan_data_set.csv')
     dataset = pd.read_csv(data_set_file_path)
 
     # dataset = pd.read_csv('loan_data_set.csv')
@@ -65,8 +64,9 @@ def prediction_models():
     for name, classifier in classifiers.items():
         pipe = Pipeline(steps=[('preprocessor', preprocessor), ('classifier', classifier)])
         pipe.fit(x_train, y_train)
-        file_name = models_file_path + name + '.pkl'
-        joblib.dump(pipe, file_name)
+        file_name = name + '.pkl'
+        models_file_path = os.path.join(BASE_DIR, 'model', file_name)
+        joblib.dump(pipe, models_file_path)
 
         pred_models.append(pipe)
 
