@@ -145,11 +145,11 @@ if os.getcwd() == '/app':
     DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
 
     # Honor the 'X-Forwarded-Proto' header for request.is_secure().
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = False
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
     # Allow all host headers.
-    ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+    ALLOWED_HOSTS = [".herokuapp.com"]
 
     DEBUG = True
 
