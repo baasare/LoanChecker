@@ -151,7 +151,8 @@ if os.getcwd() == '/app':
     # Allow all host headers.
     ALLOWED_HOSTS = [".herokuapp.com"]
 
-    DEBUG = True
+    DEBUG = False
+    DEBUG_PROPAGATE_EXCEPTIONS = True
 
     # Static asset configuration
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
