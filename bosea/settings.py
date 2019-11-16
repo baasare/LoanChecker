@@ -140,6 +140,8 @@ LOGOUT_REDIRECT_URL = 'index'
 if os.getcwd() == '/app':
     import dj_database_url
 
+    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
     DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
 
     # Honor the 'X-Forwarded-Proto' header for request.is_secure().
@@ -149,7 +151,7 @@ if os.getcwd() == '/app':
     # Allow all host headers.
     ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
-    DEBUG = False
+    DEBUG = True
 
     # Static asset configuration
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
