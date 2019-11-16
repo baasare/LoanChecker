@@ -53,7 +53,7 @@
                     <a class="nav-link js-scroll-trigger" href="#projects">Analytics</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="{% url "check_eligibility" %}">Loan Eligibility</a>
+                    <a class="nav-link js-scroll-trigger" href="#signup">Loan Eligibility</a>
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -135,7 +135,8 @@
                     <div class="d-flex h-100">
                         <div class="project-text w-100 my-auto text-center text-lg-right">
                             <h4 class="text-white">Missing Datapoint</h4>
-                            <p class="mb-0 text-white-50">A heat-map showing some missing data points in our training dataset</p>
+                            <p class="mb-0 text-white-50">A heat-map showing some missing data points in our training
+                                dataset</p>
                             <hr class="d-none d-lg-block mb-0 mr-0">
                         </div>
                     </div>
@@ -150,16 +151,17 @@
         <!-- Featured Project Row -->
         <div class="row align-items-center no-gutters mb-4 mb-lg-5">
             <div class="col-xl-8 col-lg-7">
-                <img class="img-fluid mb-3 mb-lg-0" src="{% static 'img/graphs/eduction_on_loan_status_1.png' %}" alt="">
+                <img class="img-fluid mb-3 mb-lg-0" src="{% static 'img/graphs/eduction_on_loan_status_1.png' %}"
+                     alt="">
             </div>
             <div class="col-xl-4 col-lg-5">
                 <div class="featured-text text-center text-lg-left">
                     <h4>Impact of Education</h4>
-                    <p class="text-black-50 mb-0">From our training dataset educated people are at a higher chance of being eligible for loans as compared to uneducated people!</p>
+                    <p class="text-black-50 mb-0">From our training dataset educated people are at a higher chance of
+                        being eligible for loans as compared to uneducated people!</p>
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 
@@ -168,12 +170,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-lg-8 mx-auto text-center">
-
                 <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                <h2 class="text-white mb-5">Sign up to check your loan eligibility!</h2>
-
-                <button onclick="location.href='{% url 'signup' %}'" class="btn btn-primary mx-auto">Sign Up</button>
-
+                {% if user.is_authenticated %}
+                    <h2 class="text-white mb-5">Check your loan eligibility now!</h2>
+                    <button onclick="location.href='{% url 'check_eligibility' %}'" class="btn btn-primary mx-auto">
+                        Check Eligibility
+                    </button>
+                {% else %}
+                    <h2 class="text-white mb-5">Sign up to check your loan eligibility!</h2>
+                    <button onclick="location.href='{% url 'signup' %}'" class="btn btn-primary mx-auto">
+                        Sign Up
+                    </button>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -194,7 +202,12 @@
                         <i class="fas fa-map-marked-alt text-primary mb-2"></i>
                         <h4 class="text-uppercase m-0">Address</h4>
                         <hr class="my-4">
-                        <div class="small text-black-50">Annie Jiagge Rd, School of Engineering Science, University of Ghana, Legon Accra</div>
+                        <div class="small text-black-50">
+                            School of Engineering Sciences <br>
+                            University of Ghana <br>
+                            Annie Jiagge Rd <br>
+                            Legon Accra
+                        </div>
                     </div>
                 </div>
             </div>
