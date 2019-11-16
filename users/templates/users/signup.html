@@ -32,27 +32,12 @@
                         {% csrf_token %}
 
                         <div class="form-label-group">
-                            <input type="text" id="id_username" class="form-control"
-                                   placeholder="Username"
-                                   name="username"
-                                   required autofocus>
-
-                            <label for="id_username">Username</label>
-
-                            {% if form.username.errors %}
-                                <div class="invalid-feedback">
-                                    {{ form.username.errors }}
-                                </div>
-                            {% endif %}
-                        </div>
-
-                        <div class="form-label-group">
                             <input type="text" id="id_first_name" class="form-control"
                                    placeholder="First Name"
                                    name="first_name"
                                    required autofocus>
 
-                            <label for="id_first_name}">First Name</label>
+                            <label for="id_first_name">Last Name</label>
 
                             {% if form.first_name.errors %}
                                 <div class="invalid-feedback">
@@ -76,6 +61,21 @@
                                 </div>
                             {% endif %}
 
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="text" id="id_username" class="form-control"
+                                   placeholder="Username"
+                                   name="username"
+                                   required autofocus>
+
+                            <label for="id_username">Username</label>
+
+                            {% if form.username.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.username.errors }}
+                                </div>
+                            {% endif %}
                         </div>
 
                         <div class="form-label-group">
