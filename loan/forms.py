@@ -12,6 +12,6 @@ class InputFeatureForm(forms.Form):
     co_income = forms.FloatField()
     loan_amount = forms.FloatField()
     loan_amount_term = forms.FloatField()
-    credit_history = forms.FloatField()
+    credit_history = forms.IntegerField()
     location = forms.CharField(max_length=100)
     ml_model = forms.CharField(max_length=100)

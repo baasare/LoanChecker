@@ -34,6 +34,9 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
+        <a class="navbar-brand" href="{% url "index" %}">
+            <img src="{% static 'img/debt_36.png' %}" alt="">
+        </a>
         <a class="navbar-brand js-scroll-trigger" href="{% url "index" %}">Bosea</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -67,6 +70,7 @@
     <div class="container align-items-center">
         <div class="row">
             <div class="col-lg-6 offset-md-3">
+                {% include "snippets/messages.html" %}
                 <div class="card">
                     <div class="card-body">
                         <form name="form" action="{% url "check_eligibility" %}" method="POST">
@@ -74,7 +78,7 @@
                             <div class="form-group">
                                 <label for="applicant_id">Applicant ID</label>
                                 <input type="text" class="form-control" id="applicant_id"
-                                       placeholder="Applicant ID, e.g. LP001000 " name="applicant_id">
+                                       placeholder="Applicant ID, e.g. LP001000 " name="applicant_id" required>
                             </div>
 
                             <div class="form-group">
@@ -147,8 +151,8 @@
 
                             <div class="form-group">
                                 <label for="credit_history">Credit History</label>
-                                <select id="credit_history" class="form-control" name="credit_history">
-                                    <option selected name="0">No Credit History</option>
+                                <select type="text"  id="credit_history" class="form-control" name="credit_history">
+                                    <option selected value="0">No Credit History</option>
                                     <option value="1">Credit History</option>
                                 </select>
                             </div>
@@ -165,19 +169,19 @@
                             <div class="form-group">
                                 <label for="ml_model">Machine Learning Model</label>
                                 <select id="ml_model" class="form-control" name="ml_model">
-                                    <option selected value="knn">K-Nearest Neighbor</option>
+                                    <option selected value="ada_boost">AdaBoost</option>
+                                    <option value="decision_trees">Decision Trees</option>
+                                    <option value="gradient_boost">Gradient Boost</option>
+                                    <option value="knn">K-Nearest Neighbor</option>
                                     <option value="logistic">Logistic Regression Classifier</option>
+                                    <option value="nu_smv">Nu-Support Vector Classification</option>
+                                    <option value="random_forest">Random Forest</option>
                                     <option value="smv">Support Vector Machine</option>
                                     <option value="smv_1">Support Vector Machine ( probability = True)</option>
-                                    <option value="nu_smv">Nu-Support Vector Classification</option>
-                                    <option value="decision_trees">Decision Trees</option>
-                                    <option value="random_forest">Random Forest</option>
-                                    <option value="ada_boost">AdaBoost</option>
-                                    <option value="gradient_boost">Gradient Boost</option>
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-block btn-primary text-uppercase">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -208,6 +212,11 @@
 <!-- Custom scripts for this template -->
 <script src="{% static 'js/grayscale.js' %}"></script>
 
+<script>
+    $(document).ready(function () {
+        $(".toast").toast('show');
+    });
+</script>
 
 </body>
 

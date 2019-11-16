@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
-from django.urls import reverse
+
 
 from .forms import SignUpForm
 
@@ -20,8 +20,6 @@ def signup(request):
     if request.method == "POST":
         form = SignUpForm(data=request.POST)
         if form.is_valid():
-            print(form.cleaned_data.get('username'))
-            # messages.success(request, "Form Validated.")
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
@@ -29,11 +27,9 @@ def signup(request):
             login(request, user)
             return redirect('index')
         else:
-
-            # messages.error(request, "Form Not Validated.")
-
             for field in form:
                 for error in field.errors:
+                    messages.error(request, error)
                     print("Field: ")
                     print(field)
                     print("Error:")

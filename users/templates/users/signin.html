@@ -24,10 +24,10 @@
 
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            {% include "snippets/messages.html" %}
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Sign In</h5>
-                    {% include "snippets/messages.html" %}
                     <form class="form-signin" name="form" action="{% url "signin" %}" method="POST">
                         {% csrf_token %}
                         <div class="form-label-group">
