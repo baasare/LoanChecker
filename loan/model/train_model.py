@@ -51,7 +51,7 @@ def prediction_models():
         'svm': SVC(gamma='auto', kernel='rbf'),
         'svm_1': SVC(gamma='auto', kernel="rbf", C=0.025,
                      probability=True),
-        'nu_smv': NuSVC(gamma='auto', probability=True),
+        'nu_svm': NuSVC(gamma='auto', probability=True),
         'decision_trees': DecisionTreeClassifier(),
         'random_forest': RandomForestClassifier(n_estimators=100),
         'ada_boost': AdaBoostClassifier(),

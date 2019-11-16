@@ -14,7 +14,8 @@ from django.contrib.auth.decorators import login_required
 def eligibility(selected_model, features):
     selected_model = selected_model + ".pkl"
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    file_path = os.path.join(BASE_DIR, 'loan/model', selected_model)
+    file_path_1 = os.path.join(BASE_DIR, 'loan')
+    file_path = os.path.join(file_path_1, 'model', selected_model)
     current_model = joblib.load(file_path)
 
     new_customer = pd.DataFrame({
