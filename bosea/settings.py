@@ -136,6 +136,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 LOGOUT_REDIRECT_URL = 'index'
 
+ALLOWED_HOSTS = ['127.0.0.1']
 
 if os.getcwd() == '/app':
     import dj_database_url

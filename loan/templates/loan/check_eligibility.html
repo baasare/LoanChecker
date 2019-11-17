@@ -47,10 +47,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                    <a class="nav-link js-scroll-trigger" href="{% url "index" %}#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#projects">Analytics</a>
+                    <a class="nav-link js-scroll-trigger" href="{% url "index" %}#projects">Analytics</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{% url "check_eligibility" %}">Loan Eligibility</a>
@@ -79,6 +79,9 @@
                                 <label for="applicant_id">Applicant ID</label>
                                 <input type="text" class="form-control" id="applicant_id"
                                        placeholder="Applicant ID, e.g. LP001000 " name="applicant_id" required>
+                                <div class="text-danger">
+                                <small> {{ form.applicant_id.errors }}</small>
+                            </div>
                             </div>
 
                             <div class="form-group">
@@ -127,12 +130,18 @@
                                 <label for="income">Applicant Income</label>
                                 <input type="text" class="form-control" id="income" aria-describedby="incomeHelp"
                                        placeholder="Applicant Income" name="income" required>
+                                <div class="text-danger">
+                                <small> {{ form.income.errors }}</small>
+                            </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="co_income">Co-applicant Income</label>
                                 <input type="text" class="form-control" id="co_income" aria-describedby="co_incomeHelp"
                                        placeholder="Co-applicant Income" name="co_income" required>
+                                <div class="text-danger">
+                                <small> {{ form.co_income.errors }}</small>
+                            </div>
                             </div>
 
                             <div class="form-group">
@@ -140,6 +149,9 @@
                                 <input type="text" class="form-control" id="loan_amount"
                                        aria-describedby="loan_amountHelp" placeholder="Loan Amount" name="loan_amount"
                                        required>
+                                <div class="text-danger">
+                                <small> {{ form.loan_amount.errors }}</small>
+                            </div>
                             </div>
 
                             <div class="form-group">
@@ -147,6 +159,9 @@
                                 <input type="text" class="form-control" id="loan_amount_term"
                                        aria-describedby="loan_amount_termHelp" placeholder="Loan Amount Term"
                                        name="loan_amount_term" required>
+                                <div class="text-danger">
+                                <small> {{ form.loan_amount_term.errors }}</small>
+                            </div>
                             </div>
 
                             <div class="form-group">

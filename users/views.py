@@ -3,7 +3,6 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 
-
 from .forms import SignUpForm
 
 
@@ -29,10 +28,11 @@ def signup(request):
         else:
             for field in form:
                 for error in field.errors:
-                    messages.error(request, error)
-                    print("Field: ")
+                    # messages.error(request, error)
+                    print("Field: ", end='')
                     print(field)
-                    print("Error:")
+                    print()
+                    print("Error:", end='')
                     print(error)
 
             args = {'form': form}

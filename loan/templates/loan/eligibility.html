@@ -47,10 +47,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                    <a class="nav-link js-scroll-trigger" href="{% url "index" %}#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#projects">Analytics</a>
+                    <a class="nav-link js-scroll-trigger" href="{% url "index" %}#projects">Analytics</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{% url "check_eligibility" %}">Loan Eligibility</a>
@@ -87,10 +87,47 @@
                         <br>
                         <ul class="fa-ul">
                             {% for feature_name, value in features.items %}
-                                <li><span class="fa-li"><i
-                                        class="fas fa-check"></i></span><strong>{{ feature_name }}:{{ " " }}{{ value }}</strong>
-                                </li>
+                                {% if feature_name == "Credit History" %}
+                                    {% if value == "0" %}
+                                        <li><span class="fa-li"><i
+                                                class="fas fa-check"></i></span><strong>{{ feature_name }}:{{ " " }}No </strong>
+                                        </li>
+                                    {% else %}
+                                        <li><span class="fa-li"><i
+                                                class="fas fa-check"></i></span><strong>{{ feature_name }}:{{ " " }}Yes</strong>
+                                        </li>
+                                    {% endif %}
+                                {% elif feature_name == "Loan Amount Term" %}
+                                    {% if value|floatformat > 1 %}
+                                        <li><span class="fa-li"><i
+                                                class="fas fa-check"></i></span><strong>{{ feature_name }}:{{ " " }}{{ value|floatformat:"0" }}{{ " month" }}</strong>
+                                        </li>
+                                    {% else %}
+                                        <li><span class="fa-li"><i
+                                                class="fas fa-check"></i></span><strong>{{ feature_name }}:{{ " " }}{{ value|floatformat:"0" }}{{ " months" }}</strong>
+                                        </li>
+                                    {% endif %}
+                                {% elif feature_name == "Applicant Income" %}
+                                    <li><span class="fa-li"><i
+                                            class="fas fa-check"></i></span><strong>{{ feature_name }}:{{ " GH₵" }}{{ value }}</strong>
+                                    </li>
+                                {% elif feature_name == "Co-applicant Income" %}
+                                    <li><span class="fa-li"><i
+                                            class="fas fa-check"></i></span><strong>{{ feature_name }}:{{ " GH₵" }}{{ value }}</strong>
+                                    </li>
+                                {% elif feature_name == "Loan Amount" %}
+                                    <li><span class="fa-li"><i
+                                            class="fas fa-check"></i></span><strong>{{ feature_name }}:{{ " GH₵" }}{{ value }}</strong>
+                                    </li>
+                                {% else %}
+                                    <li><span class="fa-li"><i
+                                            class="fas fa-check"></i></span><strong>{{ feature_name }}:{{ " " }}{{ value }}</strong>
+                                    </li>
+                                {% endif %}
                             {% endfor %}
+                            <li><span class="fa-li"><i
+                                    class="fas fa-check"></i></span><strong>Selected Model:{{ " " }}{{ selected_model }}</strong>
+                            </li>
                         </ul>
                         <a href="{% url "index" %}" class="btn btn-block btn-primary text-uppercase">Done</a>
                     </div>

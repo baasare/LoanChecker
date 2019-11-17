@@ -59,22 +59,39 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{% url "check_eligibility" %}">Loan Eligibility</a>
                 </li>
-                <li class=" nav-item">
-                    {% block custom_path %}{% endblock %}
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{% url "signout" %}">Log Out</a>
+                    </li>
+                {% else %}
+                    {% if request.path == '/signin' %}
+                        <li class=" nav-item">
+                            <a class="nav-link js-scroll-trigger" href="{% url "signup" %}">Register</a>
+                        </li>
+                    {% elif request.path == '/signup' %}
+                        <li class=" nav-item">
+                            <a class="nav-link js-scroll-trigger" href="{% url "signin" %}">Login</a>
+                        </li>
+                    {% elif request.path != '/signup' or request.path != '/signup' %}
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="{% url "signin" %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="{% url "signup" %}">Sign Up</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
             </ul>
         </div>
     </div>
 </nav>
 
 
-<header class="masthead">
-    <div class="container">
-        {% block content %}
+{% block content %}
 
-        {% endblock %}
-    </div>
-</header>
+{% endblock %}
+
+
 
 
 <!-- Bootstrap core JavaScript -->

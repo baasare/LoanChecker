@@ -62,12 +62,11 @@ def check_eligibility(request):
             features['Property Location'] = form.cleaned_data.get('location')
             selected_model = form.cleaned_data.get('ml_model')
 
-
             for key, value in features.items():
                 print(key, '->', value)
             print("Selected Model: " + selected_model)
 
-            client_eligibility = eligibility(features = features, selected_model = selected_model)
+            client_eligibility = eligibility(features=features, selected_model=selected_model)
 
             if client_eligibility[0] == 'Y':
                 message = "Eligible"
@@ -75,7 +74,7 @@ def check_eligibility(request):
             else:
                 message = "Not Eligible"
 
-            return display_results(request=request, output=message, features=features)
+            return display_results(request=request, output=message, features=features, selected_model=selected_model)
         else:
             for field in form:
                 for error in field.errors:
@@ -84,7 +83,7 @@ def check_eligibility(request):
                     print(field)
                     print("Error:")
                     print(error)
-            # messages.error(request, "Form wasn't processed.")
+            messages.error(request, "Form wasn't processed.")
     else:
         form = InputFeatureForm()
 
@@ -94,11 +93,12 @@ def check_eligibility(request):
 
 
 @login_required(login_url='/signin')
-def display_results(request, output=None, features=None):
+def display_results(request, output=None, features=None, selected_model=None):
     if features and output is None:
         redirect('check_eligibility', request)
 
     return render(request=request,
                   template_name="loan/eligibility.html",
                   context={'eligibility': output,
-                           'features': features})
+                           'features': features,
+                           'selected_model': selected_model})

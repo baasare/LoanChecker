@@ -14,17 +14,21 @@
 {% endblock %}
 
 
-{% block custom_path %}
-    <a class="nav-link js-scroll-trigger" href="{% url "signup" %}">Register</a>
-{% endblock %}
-
-
 
 {% block content %}
 
+<header class="masthead">
+    <div class="container">
+        <br><br><br><br>
+        <div class="row">
+            <div class="col-lg-6 offset-md-3">
+                {% include "snippets/messages.html" %}
+            </div>
+        </div>
+
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            {% include "snippets/messages.html" %}
+
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Sign In</h5>
@@ -35,6 +39,9 @@
                                    name="username"
                                    required autofocus>
                             <label for="inputUserame">Username</label>
+                            <div class="text-danger">
+                                <small> {{ form.username.errors }}</small>
+                            </div>
                         </div>
 
                         <div class="form-label-group">
@@ -42,10 +49,14 @@
                                    name="password"
                                    required>
                             <label for="inputPassword">Password</label>
+                            <div class="text-danger">
+                                <small> {{ form.password.errors }}</small>
+                            </div>
                         </div>
 
                         <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="remember_me" value="true">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="remember_me"
+                                   value="true">
                             <label class="custom-control-label" for="customCheck1">Remember password</label>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
@@ -59,6 +70,8 @@
             </div>
         </div>
     </div>
+    </div>
+</header>
 
 {% endblock %}
 
