@@ -105,8 +105,45 @@
 <script src="{% static 'js/grayscale.js' %}"></script>
 <script>
     $(document).ready(function () {
+        $("#passwordHelp").hide();
+
         $(".toast").toast('show');
     });
+
+    function focusFunction() {
+        $("#passwordHelp").show();
+    }
+
+    function blurFunction() {
+        $("#passwordHelp").hide();
+    }
+
+    function myFunction() {
+        const x = document.getElementById("id_password1");
+        const y = document.getElementById("id_password2");
+
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+
+        if (y.type === "password") {
+            y.type = "text";
+        } else {
+            y.type = "password";
+        }
+    }
+
+    function showPassword() {
+        var z = document.getElementById("inputPassword");
+        if (z.type === "password") {
+            z.type = "text";
+        } else {
+            z.type = "password";
+        }
+    }
+
 </script>
 
 </body>

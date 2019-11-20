@@ -79,8 +79,10 @@
 
                                 <div class="form-label-group">
                                     <input type="password" id="id_password1" class="form-control" placeholder="Password"
-                                           name="password1" required>
+                                           name="password1" onfocus="focusFunction()" onblur="blurFunction()" required>
                                     <label for="id_password1">Password</label>
+                                    <small id="passwordHelp" class="form-text text-muted">Your password should contain
+                                        at least 8 characters and shouldn't be entirely numeric or characters.</small>
                                     <div class="text-danger">
                                         <small>{{ form.password1.errors }}</small>
                                     </div>
@@ -94,6 +96,12 @@
                                         <small>{{ form.password2.errors }}</small>
                                     </div>
 
+                                    <div class="custom-control custom-checkbox mb-3">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1"
+                                               name="remember_me"
+                                               onclick="myFunction()">
+                                        <label class="custom-control-label" for="customCheck1">show password</label>
+                                    </div>
 
                                 </div>
 
