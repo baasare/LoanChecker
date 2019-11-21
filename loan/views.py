@@ -62,6 +62,16 @@ def check_eligibility(request):
             features['Property Location'] = form.cleaned_data.get('location')
             selected_model = form.cleaned_data.get('ml_model')
 
+            if features['Applicant Income'] < 0:
+                features['Applicant Income'] = 0
+
+            if features['Co-applicant Income'] < 0:
+                features['Co-applicant Income'] = 0
+
+            if features['Loan Amount Term'] < 0:
+                features['Loan Amount Term'] = 0
+
+
             for key, value in features.items():
                 print(key, '->', value)
             print("Selected Model: " + selected_model)
