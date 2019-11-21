@@ -110,6 +110,15 @@
         $(".toast").toast('show');
     });
 
+    function displayPassword() {
+        var z = document.getElementById("inputPassword");
+        if (z.type === "password") {
+            z.type = "text";
+        } else {
+            z.type = "password";
+        }
+    }
+
     function focusFunction() {
         $("#passwordHelp").show();
     }
@@ -132,15 +141,6 @@
             y.type = "text";
         } else {
             y.type = "password";
-        }
-    }
-
-    function showPassword() {
-        var z = document.getElementById("inputPassword");
-        if (z.type === "password") {
-            z.type = "text";
-        } else {
-            z.type = "password";
         }
     }
 
